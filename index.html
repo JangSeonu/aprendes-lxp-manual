@@ -356,6 +356,369 @@
   .admin-tabs button.on { background: var(--ink); color: var(--paper); }
   .admin-tabs button:hover:not(.on) { color: var(--ink-soft); }
 
+  /* ─── Admin subtabs row (subtabs left, + add right) ─── */
+  .admin-subtabs-row {
+    display: flex; align-items: stretch; justify-content: space-between;
+    gap: 16px; margin-bottom: 24px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ─── Admin sub-tabs (manual/videos) ─── */
+  .admin-subtabs {
+    display: inline-flex; gap: 0;
+  }
+  .admin-subtabs button {
+    padding: 10px 22px 12px; border: none; background: transparent;
+    font-family: var(--sans); font-size: 14px; font-weight: 500;
+    color: var(--ink-mute); cursor: pointer; transition: all 0.25s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .admin-subtabs button.on {
+    color: var(--accent); border-bottom-color: var(--accent); font-weight: 600;
+  }
+  .admin-subtabs button:hover:not(.on) { color: var(--ink-soft); }
+
+  /* ─── Primary "+ Add" button (always visible in admin) ─── */
+  .btn-add-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: #fff;
+    padding: 0 22px; align-self: center;
+    height: 40px;
+    border: none; border-radius: 6px;
+    font-family: var(--sans); font-size: 13px; font-weight: 600;
+    letter-spacing: 0.02em; cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 4px;
+  }
+  .btn-add-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    background: var(--accent-soft);
+  }
+  .btn-add-primary svg { color: #fff; }
+
+  @media (max-width: 600px) {
+    .admin-subtabs-row { flex-direction: column; align-items: stretch; gap: 0; border-bottom: none; }
+    .admin-subtabs { border-bottom: 1px solid var(--rule); }
+    .btn-add-primary { margin-top: 14px; align-self: flex-start; }
+  }
+
+  /* ─── Preview button (admin header) ─── */
+  .btn-preview {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: transparent; color: var(--ink-soft);
+    padding: 8px 14px; border: 1px solid var(--rule); border-radius: 4px;
+    font-family: var(--sans); font-size: 12px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-preview:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ─── Kind toggle (manual/videos in download view) ─── */
+  .kind-toggle {
+    display: inline-flex; gap: 4px;
+    padding: 4px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    margin: 0 0 48px;
+    box-shadow: var(--shadow-sm);
+  }
+  .kind-toggle button {
+    padding: 12px 32px;
+    border: none; background: transparent;
+    font-family: var(--display); font-size: 14px; font-weight: 600;
+    color: var(--ink-mute); cursor: pointer; transition: all 0.25s;
+    letter-spacing: 0.02em;
+    border-radius: 999px;
+    min-width: 120px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .kind-toggle button.on {
+    background: var(--ink);
+    color: var(--paper);
+    box-shadow: 0 2px 6px rgba(10, 36, 71, 0.15);
+  }
+  [data-theme="dark"] .kind-toggle button.on {
+    background: var(--accent);
+    color: #fff;
+  }
+  .kind-toggle button:hover:not(.on) { color: var(--ink); }
+  .kind-toggle button svg { width: 14px; height: 14px; opacity: 0.7; }
+  .kind-toggle button.on svg { opacity: 1; }
+
+  /* Wrapper to center the pill on the page */
+  .kind-toggle-wrap {
+    display: flex; justify-content: center;
+    margin-bottom: 48px;
+  }
+
+  /* ─── Video grid & cards ─── */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+  .video-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 22px 22px 18px;
+    display: flex; flex-direction: column;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .video-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .video-card-head { margin-bottom: 14px; }
+  .video-num {
+    font-family: var(--display); font-weight: 600; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent);
+    display: block; margin-bottom: 8px;
+  }
+  .video-title {
+    font-family: var(--display); font-weight: 600; font-size: 17px;
+    letter-spacing: -0.015em; color: var(--ink); line-height: 1.3;
+  }
+  .video-contents {
+    list-style: none; padding: 0; margin: 0 0 18px;
+    flex: 1;
+  }
+  .video-contents li {
+    position: relative; padding: 5px 0 5px 16px;
+    font-size: 13px; color: var(--ink-soft); line-height: 1.45;
+  }
+  .vc-bullet {
+    position: absolute; left: 0; top: 12px;
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--ink-mute);
+  }
+  .video-card-foot {
+    margin-top: auto; padding-top: 12px;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .video-watch-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--accent);
+    border: none; padding: 0;
+    font-family: var(--sans); font-size: 13px; font-weight: 600;
+    letter-spacing: 0.02em; cursor: pointer;
+    transition: transform 0.25s ease;
+  }
+  .video-watch-btn:hover { transform: translateX(4px); }
+  .video-watch-btn span {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    font-size: 9px;
+  }
+  .video-watch-btn.disabled {
+    color: var(--ink-mute); cursor: default;
+    font-weight: 500; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .video-watch-btn.disabled:hover { transform: none; }
+
+  /* Make whole card clickable when source is set */
+  .video-card.clickable {
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    color: inherit;
+  }
+  .video-card.clickable:hover .video-watch-icon {
+    transform: translateX(2px);
+  }
+  .video-card.disabled { cursor: default; opacity: 0.7; }
+  .video-card.disabled:hover { transform: none; border-color: var(--rule); }
+  .video-card-foot {
+    margin-top: auto; padding-top: 12px;
+    border-top: 1px solid var(--rule-soft);
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 12px; flex-wrap: wrap;
+  }
+  .video-watch-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    font-size: 9px; transition: transform 0.25s ease;
+  }
+  .vc-manual-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-family: var(--sans); font-size: 11px; font-weight: 500;
+    color: var(--ink-soft);
+    padding: 4px 9px;
+    background: var(--paper-soft);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ─── Video preview modal (split view: video left, manual right) ─── */
+  .vp-backdrop {
+    position: fixed; inset: 0; z-index: 160;
+    background: rgba(10, 36, 71, 0.6);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    display: none; align-items: center; justify-content: center;
+    padding: 24px;
+    animation: fadeIn 0.3s ease-out;
+  }
+  [data-theme="dark"] .vp-backdrop { background: rgba(0, 0, 0, 0.75); }
+  .vp-backdrop.active { display: flex; }
+  .vp-shell {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    width: 100%; max-width: 1280px; height: 88vh;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    animation: modalUp 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .vp-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper-soft);
+    flex-shrink: 0; gap: 16px;
+  }
+  .vp-header-text {
+    display: flex; align-items: baseline; gap: 14px;
+    flex: 1; min-width: 0;
+  }
+  .vp-num-badge {
+    font-family: var(--display); font-weight: 700; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--accent); flex-shrink: 0;
+  }
+  .vp-title-text {
+    font-family: var(--display); font-weight: 600; font-size: 18px;
+    color: var(--ink); letter-spacing: -0.015em;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .vp-body {
+    flex: 1; display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    overflow: hidden;
+    min-height: 0;
+  }
+  .vp-video-pane {
+    display: flex; flex-direction: column;
+    border-right: 1px solid var(--rule);
+    background: var(--bg);
+    overflow-y: auto;
+  }
+  .vp-video-frame {
+    position: relative;
+    background: #000;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    flex-shrink: 0;
+  }
+  .vp-video-frame iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+  .vp-fallback {
+    position: absolute; inset: 0;
+    display: none; flex-direction: column;
+    align-items: center; justify-content: center;
+    background: var(--paper-soft);
+    color: var(--ink-soft);
+    text-align: center; padding: 32px;
+  }
+  .vp-fallback p { margin: 0 0 18px; font-size: 14px; }
+  .vp-fallback a { text-decoration: none; }
+
+  #video-preview-contents { padding: 18px 24px 24px; }
+  .vp-section-label {
+    font-family: var(--display); font-weight: 600; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--ink-mute); margin-bottom: 10px;
+  }
+  .vp-contents-list {
+    list-style: none; padding: 0; margin: 0;
+  }
+  .vp-contents-list li {
+    position: relative; padding: 6px 0 6px 16px;
+    font-size: 14px; color: var(--ink-soft); line-height: 1.5;
+  }
+  .vp-contents-list .vc-bullet { top: 14px; }
+
+  .vp-manual-pane {
+    overflow-y: auto;
+    background: var(--paper);
+    padding: 22px 26px;
+  }
+  .vp-manual-pane.empty {
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+  }
+  .vp-manual-header { margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
+  .vp-manual-eyebrow {
+    font-family: var(--display); font-weight: 600; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--accent); margin-bottom: 10px;
+  }
+  .vp-manual-section {
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  .vp-manual-num {
+    font-family: var(--display); font-weight: 700; font-size: 14px;
+    color: var(--ink-mute); letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+  .vp-manual-title {
+    font-family: var(--display); font-weight: 600; font-size: 18px;
+    color: var(--ink); letter-spacing: -0.015em;
+  }
+  .vp-manual-empty {
+    color: var(--ink-mute); font-size: 14px; text-align: center;
+    padding: 32px 16px;
+  }
+  .vp-manual-tree { display: flex; flex-direction: column; gap: 2px; }
+  .vp-item {
+    display: grid; grid-template-columns: 36px 1fr auto;
+    gap: 12px; align-items: center;
+    padding: 12px 14px; margin: 0;
+    background: transparent; border: 1px solid transparent;
+    border-radius: 4px; text-align: left;
+    font-family: inherit; color: inherit; cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+  }
+  .vp-item.depth-2 { padding-left: 28px; }
+  button.vp-item:hover {
+    background: var(--hover-bg);
+    border-color: var(--accent);
+  }
+  button.vp-item:hover .vp-icon { color: var(--accent); transform: translateY(2px); }
+  .vp-item.no-source { cursor: default; opacity: 0.7; }
+  .vp-num {
+    font-family: var(--display); font-weight: 600; font-size: 12px;
+    color: var(--ink-mute); font-variant-numeric: tabular-nums;
+  }
+  .vp-title {
+    font-size: 14px; color: var(--ink); line-height: 1.45;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+  .vp-icon {
+    color: var(--ink-mute); font-size: 14px; transition: all 0.2s ease;
+  }
+
+  @media (max-width: 980px) {
+    .vp-body { grid-template-columns: 1fr; grid-template-rows: auto auto; }
+    .vp-video-pane { border-right: none; border-bottom: 1px solid var(--rule); }
+    .vp-shell { height: 95vh; }
+  }
+  @media (max-width: 880px) {
+    .vp-backdrop { padding: 0; }
+    .vp-shell { height: 100vh; max-height: 100vh; border-radius: 0; }
+    .vp-header { padding: 12px 16px; }
+    .vp-title-text { font-size: 16px; }
+    .vp-manual-pane { padding: 18px; }
+  }
+
   .admin-stats {
     display: flex; gap: 32px; margin-bottom: 24px;
     font-family: var(--display); font-size: 13px; color: var(--ink-soft);
@@ -438,6 +801,61 @@
   .admin-actions button.danger:hover { border-color: var(--danger); color: var(--danger); background: rgba(198, 68, 88, 0.06); }
   .admin-actions button svg { width: 14px; height: 14px; }
 
+  /* ─── Preview modal (admin → live preview in iframe) ─── */
+  .preview-modal-backdrop {
+    position: fixed; inset: 0; z-index: 150;
+    background: rgba(10, 36, 71, 0.55);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    display: none; align-items: center; justify-content: center;
+    padding: 32px;
+    animation: fadeIn 0.3s ease-out;
+  }
+  [data-theme="dark"] .preview-modal-backdrop { background: rgba(0, 0, 0, 0.7); }
+  .preview-modal-backdrop.active { display: flex; }
+  .preview-modal-shell {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    width: 100%; max-width: 1200px; height: 90vh;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    animation: modalUp 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .preview-modal-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper-soft);
+    flex-shrink: 0;
+  }
+  .preview-modal-title {
+    font-family: var(--display); font-weight: 600; font-size: 14px;
+    color: var(--ink); letter-spacing: 0.02em;
+  }
+  .preview-modal-close {
+    background: transparent; border: 1px solid var(--rule);
+    border-radius: 50%; width: 34px; height: 34px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--ink-soft); cursor: pointer; transition: all 0.2s;
+  }
+  .preview-modal-close:hover { color: var(--accent); border-color: var(--accent); }
+  .preview-modal-close svg { width: 16px; height: 16px; }
+  .preview-iframe {
+    flex: 1; width: 100%; border: none; background: var(--bg);
+    display: block;
+  }
+  body.modal-open { overflow: hidden; }
+
+  /* When the page is loaded inside a preview iframe, hide the floating admin button.
+     (Already hidden via JS, but this ensures consistency.) */
+  body.preview-mode .page-admin-btn { display: none !important; }
+
+  @media (max-width: 880px) {
+    .preview-modal-backdrop { padding: 0; }
+    .preview-modal-shell { height: 100vh; max-height: 100vh; border-radius: 0; }
+  }
+
   .toast {
     position: fixed; bottom: 32px; left: 50%;
     transform: translateX(-50%) translateY(120%);
@@ -474,6 +892,53 @@
   .file-picker svg { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; }
   .file-picker .file-name { font-size: 13px; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
   .file-picker .file-prompt { font-size: 13px; color: var(--ink-soft); }
+
+  /* ─── Manual references picker (video edit modal) ─── */
+  .manual-refs-hint {
+    font-size: 12px; color: var(--ink-mute); line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .manual-refs-tree {
+    max-height: 240px; overflow-y: auto;
+    border: 1px solid var(--rule); border-radius: 4px;
+    padding: 8px;
+    background: var(--paper-soft);
+  }
+  .manual-refs-tree .ref-item {
+    display: grid; grid-template-columns: auto auto 1fr;
+    gap: 10px; align-items: center;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    font-size: 13px;
+  }
+  .manual-refs-tree .ref-item:hover { background: var(--hover-bg); }
+  .manual-refs-tree .ref-item input[type="checkbox"] {
+    margin: 0; cursor: pointer; width: 14px; height: 14px;
+    accent-color: var(--accent);
+  }
+  .manual-refs-tree .ref-num {
+    font-family: var(--display); font-weight: 600; font-size: 11px;
+    color: var(--ink-mute); font-variant-numeric: tabular-nums;
+    min-width: 32px;
+  }
+  .manual-refs-tree .ref-title {
+    color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .manual-refs-empty {
+    padding: 18px; text-align: center; font-size: 13px; color: var(--ink-mute);
+  }
+
+  /* ─── Multi-manual groups in video preview modal ─── */
+  .vp-manual-group {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .vp-manual-group:last-child { border-bottom: none; }
+  .vp-manual-group .vp-manual-section {
+    margin-bottom: 10px;
+  }
 
   /* ─── Empty state ─── */
   .admin-empty {
@@ -725,6 +1190,15 @@
       </div>
     </div>
 
+    <!-- Manual references picker (visible only for video items) -->
+    <div class="form-row stacked" id="item-manual-refs-row" style="display:none; margin-top: 18px;">
+      <label data-i18n="item_modal_manual_refs_label">Manuales relacionados</label>
+      <div class="manual-refs-hint" data-i18n="item_modal_manual_refs_hint">Selecciona los elementos del manual relacionados con este video. Si no seleccionas ninguno, se usará coincidencia automática por número.</div>
+      <div class="manual-refs-tree" id="item-manual-refs-tree">
+        <!-- Populated dynamically when modal opens -->
+      </div>
+    </div>
+
     <div class="error-msg" id="item-error" data-i18n="item_modal_required">Required.</div>
     <div class="modal-actions">
       <button class="btn btn-danger" id="item-modal-delete" data-i18n="admin_btn_delete_node" style="display:none">Eliminar</button>
@@ -735,6 +1209,50 @@
 </div>
 
 <input type="file" id="file-input" accept="application/pdf" style="display:none">
+
+<!-- Preview modal (admin uses this to preview the user-facing screen without leaving) -->
+<div class="preview-modal-backdrop" id="preview-modal">
+  <div class="preview-modal-shell">
+    <div class="preview-modal-header">
+      <span class="preview-modal-title" id="preview-modal-title">Preview</span>
+      <button class="preview-modal-close" id="preview-modal-close" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <iframe id="preview-iframe" class="preview-iframe" src="about:blank" title="Preview"></iframe>
+  </div>
+</div>
+
+<!-- Video preview modal (split: video left, manual right) -->
+<div class="vp-backdrop" id="video-preview-modal">
+  <div class="vp-shell">
+    <div class="vp-header">
+      <div class="vp-header-text">
+        <span class="vp-num-badge" id="video-preview-num">Video</span>
+        <span class="vp-title-text" id="video-preview-title">—</span>
+      </div>
+      <button class="preview-modal-close" id="video-preview-close" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="vp-body">
+      <div class="vp-video-pane">
+        <div class="vp-video-frame">
+          <iframe id="video-preview-iframe" src="about:blank" title="Video" allow="autoplay; encrypted-media; fullscreen" allowfullscreen=""></iframe>
+          <div class="vp-fallback" id="video-preview-fallback">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:48px;height:48px;color:var(--ink-mute);margin-bottom:14px"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <p data-i18n="video_cannot_embed">Cannot play directly.</p>
+            <a href="#" target="_blank" rel="noopener" class="btn btn-primary" data-i18n="video_open_external">Open externally</a>
+          </div>
+        </div>
+        <div id="video-preview-contents"></div>
+      </div>
+      <div class="vp-manual-pane" id="video-preview-manual">
+        <!-- Manual content rendered here -->
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="toast" id="toast">—</div>
 
@@ -753,7 +1271,7 @@ const PASSWORDS = {
 };
 
 const FULL_MANUAL_FILES = {
-  "teacher": "https://drive.google.com/file/d/1HXRKQyKGclCr2X5hLXi_qCpYGucf83AM/view?usp=drive_link",
+  "teacher": "https://drive.google.com/uc?export=download&id=1HXRKQyKGclCr2X5hLXi_qCpYGucf83AM",
   "student": "https://drive.google.com/file/d/11h9zMnO90OnWrcg8UMDo32cYJewDmfYx/view?usp=drive_link",
   "admin": "manuals/admin/full.pdf"
 };
@@ -861,7 +1379,40 @@ const I18N = {
     "item_modal_current_file": "현재 파일",
     "item_modal_select_file": "PDF 파일 선택...",
     "item_modal_replace_file": "파일 교체...",
-    "export_warning_files": "참고: 페이지 관리자에서 직접 업로드한 파일은 HTML 내보내기에 포함되지 않습니다. 모든 사용자가 볼 수 있게 하려면 링크를 사용해주세요."
+    "export_warning_files": "참고: 페이지 관리자에서 직접 업로드한 파일은 HTML 내보내기에 포함되지 않습니다. 모든 사용자가 볼 수 있게 하려면 링크를 사용해주세요.",
+    "tab_manual": "매뉴얼",
+    "tab_videos": "영상",
+    "video_label": "영상",
+    "video_watch": "영상 보기",
+    "video_full_label": "전체 재생목록",
+    "video_full_title": "전체 영상 보기",
+    "video_full_desc": "모든 영상이 포함된 재생목록",
+    "video_full_btn": "재생목록 ↗",
+    "videos_meta": "영상",
+    "videos_coming_title": "영상 준비 중",
+    "videos_coming_desc": "영상 튜토리얼은 곧 제공될 예정입니다.",
+    "admin_subtab_manual": "매뉴얼",
+    "admin_subtab_videos": "영상",
+    "admin_btn_preview": "미리보기",
+    "admin_btn_preview_manual": "매뉴얼 미리보기",
+    "admin_btn_preview_videos": "영상 미리보기",
+    "admin_videos_full_label": "전체 재생목록",
+    "admin_no_videos": "아직 영상이 없습니다. '+ 영상 추가' 버튼으로 시작하세요.",
+    "admin_btn_add_video": "+ 영상 추가",
+    "video_modal_new": "새 영상 추가",
+    "video_modal_edit": "영상 수정",
+    "video_modal_new_part": "새 콘텐츠 추가",
+    "video_modal_edit_part": "콘텐츠 수정",
+    "open_video": "영상 열기",
+    "video_manual_available": "📖 매뉴얼 함께 보기",
+    "video_related_manual": "관련 매뉴얼",
+    "video_no_matching_manual": "이 영상에 매칭되는 매뉴얼 섹션이 없습니다.",
+    "video_contents_label": "영상 내용",
+    "video_open_external": "외부에서 열기",
+    "video_cannot_embed": "이 영상은 직접 재생할 수 없습니다. 외부 링크에서 확인해주세요.",
+    "item_modal_manual_refs_label": "관련 매뉴얼 항목",
+    "item_modal_manual_refs_hint": "이 영상이 다루는 매뉴얼 항목을 선택하세요. 선택하지 않으면 같은 번호의 매뉴얼 섹션과 자동으로 매칭됩니다.",
+    "item_modal_no_manual_yet": "이 역할에 매뉴얼 섹션이 아직 없습니다."
   },
   "es": {
     "brand": "LXP · Manual",
@@ -965,7 +1516,40 @@ const I18N = {
     "item_modal_current_file": "Archivo actual",
     "item_modal_select_file": "Seleccionar archivo PDF...",
     "item_modal_replace_file": "Reemplazar archivo...",
-    "export_warning_files": "Nota: Los archivos cargados directamente desde la administración no se incluyen en la exportación HTML. Para que todos los usuarios los vean, usa enlaces en su lugar."
+    "export_warning_files": "Nota: Los archivos cargados directamente desde la administración no se incluyen en la exportación HTML. Para que todos los usuarios los vean, usa enlaces en su lugar.",
+    "tab_manual": "Manual",
+    "tab_videos": "Videos",
+    "video_label": "Video",
+    "video_watch": "Ver video",
+    "video_full_label": "Lista de reproducción",
+    "video_full_title": "Ver todos los videos",
+    "video_full_desc": "Lista de reproducción con todos los videos",
+    "video_full_btn": "Lista de reproducción ↗",
+    "videos_meta": "Videos",
+    "videos_coming_title": "Videos próximamente",
+    "videos_coming_desc": "Los videos tutoriales estarán disponibles pronto.",
+    "admin_subtab_manual": "Manual",
+    "admin_subtab_videos": "Videos",
+    "admin_btn_preview": "Vista previa",
+    "admin_btn_preview_manual": "Vista previa del manual",
+    "admin_btn_preview_videos": "Vista previa de videos",
+    "admin_videos_full_label": "Lista de reproducción",
+    "admin_no_videos": "Aún no hay videos. Usa '+ Agregar video' para comenzar.",
+    "admin_btn_add_video": "+ Agregar video",
+    "video_modal_new": "Nuevo Video",
+    "video_modal_edit": "Editar Video",
+    "video_modal_new_part": "Nuevo Contenido",
+    "video_modal_edit_part": "Editar Contenido",
+    "open_video": "Abriendo video",
+    "video_manual_available": "📖 Manual disponible",
+    "video_related_manual": "Manual relacionado",
+    "video_no_matching_manual": "No hay sección de manual que coincida con este video.",
+    "video_contents_label": "Contenido del video",
+    "video_open_external": "Abrir externamente",
+    "video_cannot_embed": "Este video no se puede reproducir directamente. Ábrelo en un enlace externo.",
+    "item_modal_manual_refs_label": "Manuales relacionados",
+    "item_modal_manual_refs_hint": "Selecciona los elementos del manual que cubre este video. Si no seleccionas ninguno, se usará coincidencia automática por número.",
+    "item_modal_no_manual_yet": "Aún no hay secciones de manual para este rol."
   },
   "en": {
     "brand": "LXP · Manual",
@@ -1069,7 +1653,40 @@ const I18N = {
     "item_modal_current_file": "Current file",
     "item_modal_select_file": "Select PDF file...",
     "item_modal_replace_file": "Replace file...",
-    "export_warning_files": "Note: Directly uploaded files are not included in HTML export. Use links to share with all users."
+    "export_warning_files": "Note: Directly uploaded files are not included in HTML export. Use links to share with all users.",
+    "tab_manual": "Manual",
+    "tab_videos": "Videos",
+    "video_label": "Video",
+    "video_watch": "Watch video",
+    "video_full_label": "Full Playlist",
+    "video_full_title": "Watch All Videos",
+    "video_full_desc": "Playlist containing all videos",
+    "video_full_btn": "Playlist ↗",
+    "videos_meta": "Videos",
+    "videos_coming_title": "Videos coming soon",
+    "videos_coming_desc": "Video tutorials will be available soon.",
+    "admin_subtab_manual": "Manual",
+    "admin_subtab_videos": "Videos",
+    "admin_btn_preview": "Preview",
+    "admin_btn_preview_manual": "Manual preview",
+    "admin_btn_preview_videos": "Videos preview",
+    "admin_videos_full_label": "Full Playlist",
+    "admin_no_videos": "No videos yet. Use '+ Add video' to start.",
+    "admin_btn_add_video": "+ Add video",
+    "video_modal_new": "New Video",
+    "video_modal_edit": "Edit Video",
+    "video_modal_new_part": "New Content Item",
+    "video_modal_edit_part": "Edit Content Item",
+    "open_video": "Opening video",
+    "video_manual_available": "📖 Manual available",
+    "video_related_manual": "Related Manual",
+    "video_no_matching_manual": "No matching manual section for this video.",
+    "video_contents_label": "Video Contents",
+    "video_open_external": "Open externally",
+    "video_cannot_embed": "This video can't be played directly. Open in an external link.",
+    "item_modal_manual_refs_label": "Related Manual Items",
+    "item_modal_manual_refs_hint": "Select the manual items this video covers. If none are selected, the system will fall back to auto-matching by number.",
+    "item_modal_no_manual_yet": "No manual sections defined for this role yet."
   }
 };
 
@@ -1121,7 +1738,7 @@ const SECTIONS_DATA_DEFAULT = {
             {
               "num": "2.1.1",
               "title": {
-                "ko": "강의실 목록",
+                "ko": "교실 목록",
                 "es": "Lista de Aulas"
               },
               "file": "https://drive.google.com/file/d/1SK9XfTfyB4zrP2gg8Rvcd-dCBwZP1e_l/view?usp=drive_link",
@@ -1368,37 +1985,550 @@ function ensureIds(nodes) {
   }
 }
 
-const SECTIONS_KEY_PREFIX = 'lxp_sections_v2_';
+// Video tutorials data — same tree structure as manual, but stored separately
+const VIDEOS_DATA_DEFAULT = {
+  teacher: [
+    {
+      "num": "1",
+      "title": {
+        "ko": "교실 환경 설정",
+        "es": "Configuración del entorno del aula",
+        "en": "Setting Up the Classroom Environment"
+      },
+      "children": [
+        {
+          "num": "1.1",
+          "title": {
+            "ko": "교실 환경 설정",
+            "es": "Configuración del entorno del aula",
+            "en": "Setting Up the Classroom Environment"
+          },
+          "id": "n_41zdkudb4nbr"
+        },
+        {
+          "num": "1.2",
+          "title": {
+            "ko": "Wi-Fi 연결",
+            "es": "Conexión Wi-Fi",
+            "en": "Wi-Fi Connection"
+          },
+          "id": "n_hk44sul4snbr"
+        },
+        {
+          "num": "1.3",
+          "title": {
+            "ko": "플랫폼 접속 및 로그인",
+            "es": "Conexión e inicio de sesión en la plataforma",
+            "en": "Connecting to and Logging In to the Platform"
+          },
+          "id": "n_ttn4hdr60nbr"
+        }
+      ],
+      "id": "n_rbtew3nqhnbr",
+      "manualRefs": [
+        "n_lpfemtz3zu6z",
+        "n_8q10m544xxc1",
+        "n_62v38z2cttcc",
+        "p:manuals/teacher/1.1.pdf"
+      ],
+      "file": "https://drive.google.com/file/d/1Ui4FLLghrDJMfEG6iZ5d-wslSGMtK-oe/view?usp=drive_link"
+    },
+    {
+      "num": "2",
+      "title": {
+        "ko": "학교 선택 및 바로가기",
+        "es": "Selección de escuela y acceso directo",
+        "en": "School Selection and Shortcut"
+      },
+      "children": [
+        {
+          "num": "2.1",
+          "title": {
+            "ko": "학교 선택",
+            "es": "Selección de escuela",
+            "en": "Selecting a School"
+          },
+          "id": "n_4nngu9brdnbr"
+        },
+        {
+          "num": "2.2",
+          "title": {
+            "ko": "바로가기 만들기",
+            "es": "Creación de acceso directo",
+            "en": "Creating a Shortcut"
+          },
+          "id": "n_izp6s6zt9nbr"
+        }
+      ],
+      "id": "n_lo6hgrintnbr",
+      "file": "https://drive.google.com/file/d/12eUi9fC0pkhBJAsgUPXCgzofjlxNgM7m/view?usp=drive_link"
+    },
+    {
+      "num": "3",
+      "title": {
+        "ko": "강의실 및 오늘의 수업",
+        "es": "Aulas y clase de hoy",
+        "en": "Classrooms and Today's Class"
+      },
+      "children": [
+        {
+          "num": "3.1",
+          "title": {
+            "ko": "교실 목록",
+            "es": "Lista de Aulas",
+            "en": "Classrooms List"
+          },
+          "id": "n_e2qpfrkmsnbr"
+        },
+        {
+          "num": "3.2",
+          "title": {
+            "ko": "오늘의 수업",
+            "es": "Clase de hoy",
+            "en": "Today's Class"
+          },
+          "id": "n_yfyio9eyznbr"
+        }
+      ],
+      "id": "n_icd48j7jinbr",
+      "manualRefs": [
+        "p:manuals/teacher/2.1.1.pdf",
+        "p:manuals/teacher/2.1.2.pdf"
+      ],
+      "file": "https://drive.google.com/file/d/13NF2lZOASdK14zlpXlNCOaHXlou0yfi8/view?usp=drive_link"
+    },
+    {
+      "num": "4",
+      "title": {
+        "ko": "수업 목록",
+        "es": "Lista de clases",
+        "en": "Class List"
+      },
+      "children": [
+        {
+          "num": "4.1",
+          "title": {
+            "ko": "수업 목록",
+            "es": "Lista de clases",
+            "en": "Class List"
+          },
+          "id": "n_yjlawux99nbr"
+        }
+      ],
+      "id": "n_i4ft9yfumnbr",
+      "manualRefs": [
+        "p:manuals/teacher/2.1.3.pdf"
+      ],
+      "file": "https://drive.google.com/file/d/1gqzEESIdZ-ONqg7ZYZVe-zEG7dZp5Olz/view?usp=drive_link"
+    },
+    {
+      "num": "5",
+      "title": {
+        "ko": "정규 수업",
+        "es": "Clase regular",
+        "en": "Regular Class"
+      },
+      "children": [
+        {
+          "num": "5.1",
+          "title": {
+            "ko": "정규 수업",
+            "es": "Clase regular",
+            "en": "Regular Class"
+          },
+          "id": "n_d2khkfpw0nbr"
+        }
+      ],
+      "id": "n_xu3wua66ynbr",
+      "manualRefs": [
+        "p:manuals/teacher/2.1.4.pdf"
+      ],
+      "file": "https://drive.google.com/file/d/1Lw5tQHMxdjYugbnb4v251yAa5xR2mVmq/view?usp=drive_link"
+    },
+    {
+      "num": "6",
+      "title": {
+        "ko": "수업 모드 및 화면 제어",
+        "es": "Modo clase y control de pantalla",
+        "en": "Class Mode and Screen Control"
+      },
+      "children": [
+        {
+          "num": "6.1",
+          "title": {
+            "ko": "수업 모드",
+            "es": "Modo clase",
+            "en": "Class Mode"
+          },
+          "id": "n_ylowoarfwnbr"
+        },
+        {
+          "num": "6.2",
+          "title": {
+            "ko": "화면 잠금",
+            "es": "Bloqueo de pantalla",
+            "en": "Screen Lock"
+          },
+          "id": "n_3fn4myrwcnbr"
+        },
+        {
+          "num": "6.3",
+          "title": {
+            "ko": "화면 동기화",
+            "es": "Sincronización de pantalla",
+            "en": "Screen Synchronization"
+          },
+          "id": "n_7k9oaie9lnbr"
+        }
+      ],
+      "id": "n_eamk1u5o7nbr",
+      "manualRefs": [
+        "p:manuals/teacher/2.1.6.pdf",
+        "p:manuals/teacher/2.1.6.1.pdf",
+        "p:manuals/teacher/2.1.6.2.pdf"
+      ],
+      "file": "https://drive.google.com/file/d/14Y9m5Q-tYZb_jG2wXQyBBmhfvmIkszWX/view?usp=drive_link"
+    },
+    {
+      "num": "7",
+      "title": {
+        "ko": "출석 기능",
+        "es": "Función de asistencia",
+        "en": "Attendance Feature"
+      },
+      "children": [
+        {
+          "num": "7.1",
+          "title": {
+            "ko": "출석 기능 사용법",
+            "es": "Uso de la función de asistencia",
+            "en": "Using the Attendance Feature"
+          },
+          "id": "n_pxwbh18clnbr"
+        },
+        {
+          "num": "7.2",
+          "title": {
+            "ko": "수업 모드에서 출석 관리",
+            "es": "Control de asistencia desde Modo de Clase",
+            "en": "Attendance Tracking in Class Mode"
+          },
+          "id": "n_ipmg9j5rjnbr"
+        },
+        {
+          "num": "7.3",
+          "title": {
+            "ko": "출석 관리 다운로드",
+            "es": "Descarga de control de asistencia",
+            "en": "Downloading Attendance Records"
+          },
+          "id": "n_ln9hiwuy3nbr"
+        }
+      ],
+      "id": "n_rsn952fahnbr",
+      "manualRefs": [
+        "p:manuals/teacher/2.1.5.pdf",
+        "p:manuals/teacher/2.1.5.1.pdf",
+        "p:manuals/teacher/2.1.5.2.pdf"
+      ],
+      "file": "https://drive.google.com/file/d/1DlhZ0XrryQ16X9ySZ55AHjQmdfKmkBMO/view?usp=drive_link"
+    },
+    {
+      "num": "8",
+      "title": {
+        "ko": "판서, 자료, 화면 제어",
+        "es": "Pizarra, materiales y control de pantalla",
+        "en": "Whiteboard, Materials, and Screen Control"
+      },
+      "children": [
+        {
+          "num": "8.1",
+          "title": {
+            "ko": "판서",
+            "es": "Pizarra",
+            "en": "Whiteboard"
+          },
+          "id": "n_se1xg2k10nbr"
+        },
+        {
+          "num": "8.2",
+          "title": {
+            "ko": "참고 자료",
+            "es": "Material de referencia",
+            "en": "Reference Materials"
+          },
+          "id": "n_zm64am1n9nbr"
+        },
+        {
+          "num": "8.3",
+          "title": {
+            "ko": "전체 화면",
+            "es": "Pantalla Completa",
+            "en": "Full Screen"
+          },
+          "id": "n_ea9pvtvomnbr"
+        },
+        {
+          "num": "8.4",
+          "title": {
+            "ko": "줌 제어",
+            "es": "Control del Zoom",
+            "en": "Zoom Control"
+          },
+          "id": "n_epe2tqp6anbr"
+        }
+      ],
+      "id": "n_8ghkb6svlnbr"
+    },
+    {
+      "num": "9",
+      "title": {
+        "ko": "학생 목록 및 재시도 기능",
+        "es": "Lista de estudiantes y función de reintentar",
+        "en": "Student List and Retry Feature"
+      },
+      "children": [
+        {
+          "num": "9.1",
+          "title": {
+            "ko": "학생 목록",
+            "es": "Lista de estudiantes",
+            "en": "Student List"
+          },
+          "id": "n_dl3a8kltpnbr"
+        },
+        {
+          "num": "9.2",
+          "title": {
+            "ko": "재시도 기능",
+            "es": "Función de reintentar",
+            "en": "Retry Feature"
+          },
+          "id": "n_jwi89zjcwnbr"
+        }
+      ],
+      "id": "n_d93zxox22nbr"
+    },
+    {
+      "num": "10",
+      "title": {
+        "ko": "나의 진도",
+        "es": "Mi progreso",
+        "en": "My Progress"
+      },
+      "children": [
+        {
+          "num": "10.1",
+          "title": {
+            "ko": "나의 진도",
+            "es": "Mi progreso",
+            "en": "My Progress"
+          },
+          "id": "n_rvzsdsjounbr"
+        }
+      ],
+      "id": "n_gpra5wejdnbr"
+    },
+    {
+      "num": "11",
+      "title": {
+        "ko": "학습 요약 및 과제",
+        "es": "Resumen de aprendizaje y tareas",
+        "en": "Learning Summary and Assignments"
+      },
+      "children": [
+        {
+          "num": "11.1",
+          "title": {
+            "ko": "학습 요약",
+            "es": "Resumen de aprendizaje",
+            "en": "Learning Summary"
+          },
+          "id": "n_lpfofjuyonbr"
+        },
+        {
+          "num": "11.2",
+          "title": {
+            "ko": "과제 목록",
+            "es": "Lista de tareas",
+            "en": "Assignment List"
+          },
+          "id": "n_gatc32bh1nbr"
+        }
+      ],
+      "id": "n_szhy7nvusnbr"
+    },
+    {
+      "num": "12",
+      "title": {
+        "ko": "수학 수업 그룹 구성",
+        "es": "Estructura de grupo de clase de matemática",
+        "en": "Math Class Group Structure"
+      },
+      "children": [
+        {
+          "num": "12.1",
+          "title": {
+            "ko": "수학 수업 그룹 구성",
+            "es": "Estructura de grupo de clase de matemática",
+            "en": "Math Class Group Structure"
+          },
+          "id": "n_xzp6zgo0nnbr"
+        },
+        {
+          "num": "12.2",
+          "title": {
+            "ko": "수업 그룹",
+            "es": "Grupo de clase",
+            "en": "Class Group"
+          },
+          "id": "n_nxzb6o9dxnbr"
+        },
+        {
+          "num": "12.3",
+          "title": {
+            "ko": "보충 그룹 (OVA 4)",
+            "es": "Grupo de refuerzo (OVA 4)",
+            "en": "Reinforcement Group (OVA 4)"
+          },
+          "id": "n_n4z3tfwwunbr"
+        }
+      ],
+      "id": "n_8v4g06i4unbr"
+    },
+    {
+      "num": "13",
+      "title": {
+        "ko": "언어 수업 그룹 구성",
+        "es": "Estructura de grupo de clase de lenguaje",
+        "en": "Language Class Group Structure"
+      },
+      "children": [
+        {
+          "num": "13.1",
+          "title": {
+            "ko": "언어 수업 그룹 구성",
+            "es": "Estructura de grupo de clase de lenguaje",
+            "en": "Language Class Group Structure"
+          },
+          "id": "n_cml3qdiffnbr"
+        },
+        {
+          "num": "13.2",
+          "title": {
+            "ko": "수업 그룹",
+            "es": "Grupo de clase",
+            "en": "Class Group"
+          },
+          "id": "n_iga3dixmpnbr"
+        },
+        {
+          "num": "13.3",
+          "title": {
+            "ko": "보충 그룹 (OVA 4)",
+            "es": "Grupo de refuerzo (OVA 4)",
+            "en": "Reinforcement Group (OVA 4)"
+          },
+          "id": "n_8bt6tvpornbr"
+        },
+        {
+          "num": "13.4",
+          "title": {
+            "ko": "독해 횡단축",
+            "es": "Eje transversal de lectura",
+            "en": "Reading Cross-axis"
+          },
+          "id": "n_8csckkrihnbr"
+        },
+        {
+          "num": "13.5",
+          "title": {
+            "ko": "작문 횡단축",
+            "es": "Eje transversal de escritura",
+            "en": "Writing Cross-axis"
+          },
+          "id": "n_lcpblqlwxnbr"
+        }
+      ],
+      "id": "n_rdoqsukf3nbr"
+    }
+  ],
+  student: null,
+  admin: null
+};
 
-function getSections(role) {
-  const stored = localStorage.getItem(SECTIONS_KEY_PREFIX + role);
+const FULL_VIDEO_FILES = {
+  "teacher": "",
+  "student": "",
+  "admin": ""
+};
+
+// "kind" is either 'manual' or 'videos'
+const TREE_KEY_PREFIX = 'lxp_tree_v3_';
+const SECTIONS_KEY_PREFIX = 'lxp_sections_v2_';  // legacy key for migration
+
+// Tree storage: works for both 'manual' and 'videos' kind
+function getTree(role, kind) {
+  const newKey = TREE_KEY_PREFIX + kind + '_' + role;
+  const stored = localStorage.getItem(newKey);
   if (stored) {
     try {
       const parsed = JSON.parse(stored);
       ensureIds(parsed);
       return parsed;
     } catch (e) {
-      console.warn('Failed to parse stored sections, falling back to default', e);
+      console.warn('Failed to parse stored tree:', e);
     }
   }
-  const def = SECTIONS_DATA_DEFAULT[role];
+  // Legacy migration: if asking for manual and old key exists, use it
+  if (kind === 'manual') {
+    const legacy = localStorage.getItem(SECTIONS_KEY_PREFIX + role);
+    if (legacy) {
+      try {
+        const parsed = JSON.parse(legacy);
+        ensureIds(parsed);
+        return parsed;
+      } catch (e) {
+        console.warn('Legacy parse failed:', e);
+      }
+    }
+  }
+  // Fall back to default data
+  const defaults = (kind === 'videos') ? VIDEOS_DATA_DEFAULT : SECTIONS_DATA_DEFAULT;
+  const def = defaults[role];
   if (!def) return null;
   const copy = JSON.parse(JSON.stringify(def));
   ensureIds(copy);
+  // CRITICAL: Persist immediately so generated IDs are stable across getTree calls.
+  // Without this, every getTree call regenerates IDs and findNode can't find
+  // a parent node by the ID that was rendered earlier in the same session.
+  try {
+    localStorage.setItem(newKey, JSON.stringify(copy));
+  } catch (e) { console.warn('Could not persist default tree:', e); }
   return copy;
 }
 
-function setSections(role, sections) {
-  if (sections === null) {
-    localStorage.removeItem(SECTIONS_KEY_PREFIX + role);
+function setTree(role, kind, tree) {
+  const key = TREE_KEY_PREFIX + kind + '_' + role;
+  if (tree === null) {
+    localStorage.removeItem(key);
+    if (kind === 'manual') localStorage.removeItem(SECTIONS_KEY_PREFIX + role);
   } else {
-    localStorage.setItem(SECTIONS_KEY_PREFIX + role, JSON.stringify(sections));
+    localStorage.setItem(key, JSON.stringify(tree));
+    // Once we've written to new key, clear legacy
+    if (kind === 'manual') localStorage.removeItem(SECTIONS_KEY_PREFIX + role);
   }
 }
 
-function resetSections(role) {
-  localStorage.removeItem(SECTIONS_KEY_PREFIX + role);
+function resetTree(role, kind) {
+  localStorage.removeItem(TREE_KEY_PREFIX + kind + '_' + role);
+  if (kind === 'manual') localStorage.removeItem(SECTIONS_KEY_PREFIX + role);
 }
+
+// Backwards-compatible wrappers (so existing manual code keeps working unchanged)
+function getSections(role) { return getTree(role, 'manual'); }
+function setSections(role, sections) { setTree(role, 'manual', sections); }
+function resetSections(role) { resetTree(role, 'manual'); }
 
 /* ════════════ LINK STORE (keyed by node id) ════════════ */
 const LINKS_KEY = 'lxp_links_v1';
@@ -1487,13 +2617,15 @@ function findNodeIn(sections, id) {
   return search(sections);
 }
 
-// Public: find node + return the parsed sections that contains it (for callers to save).
-function findNode(role, id) {
-  const sections = getSections(role);
+// Public: find node + return the parsed tree that contains it.
+// kind defaults to 'manual' for backward compatibility.
+function findNode(role, id, kind = 'manual') {
+  const sections = getTree(role, kind);
   if (!sections) return null;
   const found = findNodeIn(sections, id);
   if (!found) return null;
   found.sections = sections;
+  found.kind = kind;
   return found;
 }
 
@@ -1505,8 +2637,8 @@ function collectAllIds(node) {
   return ids;
 }
 
-function addSection(role, partial) {
-  const sections = getSections(role) || [];
+function addSection(role, partial, kind = 'manual') {
+  const sections = getTree(role, kind) || [];
   const newNode = {
     id: genId(),
     num: partial.num || String(sections.length + 1),
@@ -1514,12 +2646,12 @@ function addSection(role, partial) {
     children: []
   };
   sections.push(newNode);
-  setSections(role, sections);
+  setTree(role, kind, sections);
   return newNode;
 }
 
-function addChild(role, parentId, partial) {
-  const found = findNode(role, parentId);
+function addChild(role, parentId, partial, kind = 'manual') {
+  const found = findNode(role, parentId, kind);
   if (!found) return null;
   if (!found.node.children) found.node.children = [];
   const newNode = {
@@ -1528,26 +2660,33 @@ function addChild(role, parentId, partial) {
     title: { ko: partial.title_ko || '', es: partial.title_es || '' }
   };
   found.node.children.push(newNode);
-  setSections(role, found.sections);
+  setTree(role, kind, found.sections);
   return newNode;
 }
 
-function updateNode(role, id, partial) {
-  const found = findNode(role, id);
+function updateNode(role, id, partial, kind = 'manual') {
+  const found = findNode(role, id, kind);
   if (!found) return false;
   if (partial.num !== undefined) found.node.num = partial.num;
   if (partial.title_ko !== undefined) found.node.title = { ...(found.node.title || {}), ko: partial.title_ko };
   if (partial.title_es !== undefined) found.node.title = { ...(found.node.title || {}), es: partial.title_es };
-  setSections(role, found.sections);
+  if (partial.manualRefs !== undefined) {
+    if (Array.isArray(partial.manualRefs) && partial.manualRefs.length > 0) {
+      found.node.manualRefs = partial.manualRefs;
+    } else {
+      delete found.node.manualRefs;
+    }
+  }
+  setTree(role, kind, found.sections);
   return true;
 }
 
-async function deleteNodeAndSources(role, id) {
-  const found = findNode(role, id);
+async function deleteNodeAndSources(role, id, kind = 'manual') {
+  const found = findNode(role, id, kind);
   if (!found) return false;
   const allIds = collectAllIds(found.node);
   found.parentArr.splice(found.index, 1);
-  setSections(role, found.sections);
+  setTree(role, kind, found.sections);
   const links = loadLinks();
   for (const nid of allIds) {
     delete links[nid];
@@ -1557,22 +2696,18 @@ async function deleteNodeAndSources(role, id) {
   return true;
 }
 
-// Reorder a node within its current parent. `targetIndex` is the index where
-// the dragged node should land (in the array AFTER it has been removed from
-// its old position, so callers pass the visual drop position).
-function moveNodeTo(role, id, targetIndex) {
-  const found = findNode(role, id);
+function moveNodeTo(role, id, targetIndex, kind = 'manual') {
+  const found = findNode(role, id, kind);
   if (!found) return false;
   const arr = found.parentArr;
   const from = found.index;
-  // Adjust if dragging downward: removing the source first shifts later indices left
   let to = targetIndex;
   if (to > from) to -= 1;
   if (to === from) return true;
   if (to < 0 || to > arr.length - 1) to = Math.max(0, Math.min(arr.length - 1, to));
   const [item] = arr.splice(from, 1);
   arr.splice(to, 0, item);
-  setSections(role, found.sections);
+  setTree(role, kind, found.sections);
   return true;
 }
 
@@ -1599,6 +2734,87 @@ function shortenUrl(url, max = 48) {
   } catch { return url.length > max ? url.slice(0, max - 1) + '…' : url; }
 }
 
+/* ════════════ EMBED URL CONVERSION ════════════ */
+// Convert various video URLs to embeddable form (for use in <iframe>).
+// Returns { embed: string|null, original: string, kind: 'drive'|'youtube'|'vimeo'|'unknown' }
+function toEmbedUrl(url) {
+  if (!url) return { embed: null, original: url, kind: 'unknown' };
+  let m;
+  // Google Drive (file/d/ID/view OR uc?id=ID OR open?id=ID)
+  m = url.match(/drive\.google\.com\/file\/d\/([\w-]+)/);
+  if (m) return { embed: `https://drive.google.com/file/d/${m[1]}/preview`, original: url, kind: 'drive' };
+  m = url.match(/drive\.google\.com\/(?:open|uc)\?(?:[^&]*&)*id=([\w-]+)/);
+  if (m) return { embed: `https://drive.google.com/file/d/${m[1]}/preview`, original: url, kind: 'drive' };
+  // YouTube
+  m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]+)/);
+  if (m) return { embed: `https://www.youtube.com/embed/${m[1]}`, original: url, kind: 'youtube' };
+  // Vimeo
+  m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  if (m) return { embed: `https://player.vimeo.com/video/${m[1]}`, original: url, kind: 'vimeo' };
+  // Unknown — return null embed so caller can show fallback (open externally)
+  return { embed: null, original: url, kind: 'unknown' };
+}
+
+/* ════════════ VIDEO → MANUAL MATCHING ════════════ */
+// Find the manual section in the same role's manual tree whose num matches
+// the video's num (e.g. video num "1" → manual section "1. Plataforma").
+// Returns the matched manual node (with its full sub-tree) or null.
+// Find manual nodes related to a video.
+// 1) If video has manualRefs (explicit user-selected IDs), return those nodes (in order).
+// 2) Otherwise fall back to num-based auto-matching (num "1" → manual section "1.x" tree).
+// Returns an array of manual nodes (may be empty).
+function findRelatedManualNodes(role, video) {
+  const manualTree = getTree(role, 'manual');
+  if (!Array.isArray(manualTree)) return [];
+
+  // Recursive collector for findById
+  function findById(arr, id) {
+    for (const n of arr) {
+      if (n.id === id) return n;
+      if (n.children) {
+        const r = findById(n.children, id);
+        if (r) return r;
+      }
+    }
+    return null;
+  }
+
+  // 1) Explicit manual references
+  if (Array.isArray(video.manualRefs) && video.manualRefs.length > 0) {
+    const refs = [];
+    for (const id of video.manualRefs) {
+      const node = findById(manualTree, id);
+      if (node) refs.push(node);
+    }
+    return refs;
+  }
+
+  // 2) Fall back to num-based auto-matching
+  if (!video.num) return [];
+  // Top-level direct match first
+  for (const sec of manualTree) {
+    if (String(sec.num) === String(video.num)) return [sec];
+  }
+  // Deeper match (e.g. video num "2.3" finds manual node "2.3" anywhere)
+  function searchByNum(arr) {
+    for (const n of arr) {
+      if (String(n.num) === String(video.num)) return n;
+      if (n.children) {
+        const r = searchByNum(n.children);
+        if (r) return r;
+      }
+    }
+    return null;
+  }
+  const found = searchByNum(manualTree);
+  return found ? [found] : [];
+}
+
+// Backwards-compat wrapper for any old callers
+function findMatchingManualSection(role, videoNum) {
+  return findRelatedManualNodes(role, { num: videoNum })[0] || null;
+}
+
 /* ════════════ STATE & UTILITIES ════════════ */
 // One-time language preference reset: bump LANG_VERSION when defaulting changes.
 // Anyone with an older saved preference gets the new default on next load.
@@ -1616,7 +2832,9 @@ const state = {
   theme:   localStorage.getItem('lxp_theme') || 'light',
   currentScreen: 'main',
   currentRole: null,
+  downloadKind: 'manual',  // 'manual' | 'videos' — which sub-view is shown on download screen
   adminTab: 'teacher',
+  adminKind: 'manual',     // 'manual' | 'videos' — which sub-view in admin
   uploadedKeys: new Set()
 };
 const t = (key) => (I18N[state.lang] && I18N[state.lang][key]) || key;
@@ -1671,6 +2889,28 @@ updateLangToggles();
 bindControls(document);
 dbListKeys().then(keys => { state.uploadedKeys = new Set(keys); }).catch(() => {});
 
+// Preview-mode auto-routing: when this page is loaded inside an iframe with
+// ?preview=teacher|student|admin&kind=manual|videos, skip auth and render the
+// download screen immediately. Used by the admin preview modal.
+(function handlePreviewMode() {
+  const params = new URLSearchParams(window.location.search);
+  const previewRole = params.get('preview');
+  const previewKind = params.get('kind') || 'manual';
+  if (previewRole && ['teacher', 'student', 'admin'].includes(previewRole)) {
+    document.body.classList.add('preview-mode');
+    state.currentRole = previewRole;
+    state.downloadKind = previewKind === 'videos' ? 'videos' : 'manual';
+    // Hide the floating admin button in preview iframe
+    const adminBtn = document.getElementById('page-admin-btn');
+    if (adminBtn) adminBtn.style.display = 'none';
+    // Render after DOM bindings are set up. We need to wait until renderDownloadScreen is defined,
+    // so defer to next tick.
+    setTimeout(() => {
+      renderDownloadScreen(previewRole, { kind: state.downloadKind });
+    }, 0);
+  }
+})();
+
 /* ════════════ AUTH MODAL ════════════ */
 const authModal = document.getElementById('modal');
 const modalTitle = document.getElementById('modal-title');
@@ -1680,18 +2920,52 @@ const toast = document.getElementById('toast');
 let toastTimer = null;
 let pendingTarget = null;
 
+// Session-based auth cache: once authenticated, stays valid until browser tab closes.
+const AUTH_SESSION_KEY = 'lxp_auth_v1';
+function getAuthSet() {
+  try {
+    const raw = sessionStorage.getItem(AUTH_SESSION_KEY);
+    return new Set(raw ? JSON.parse(raw) : []);
+  } catch { return new Set(); }
+}
+function isAuthed(target) { return getAuthSet().has(target); }
+function markAuthed(target) {
+  const s = getAuthSet();
+  s.add(target);
+  try { sessionStorage.setItem(AUTH_SESSION_KEY, JSON.stringify([...s])); } catch {}
+}
+
+function enterTarget(target) {
+  if (target === 'admin_page') {
+    renderAdminScreen();
+  } else {
+    state.currentRole = target;
+    renderDownloadScreen(target);
+  }
+}
+
 document.querySelectorAll('.role-card').forEach(card => {
   card.addEventListener('click', () => {
     const role = card.dataset.role;
     if (role === 'student') {
+      // Student: never requires password
       state.currentRole = 'student';
       renderDownloadScreen('student');
+    } else if (isAuthed(role)) {
+      // Already entered this password earlier in this session
+      enterTarget(role);
     } else {
       openAuth(role);
     }
   });
 });
-document.getElementById('page-admin-btn').addEventListener('click', () => openAuth('admin_page'));
+document.getElementById('page-admin-btn').addEventListener('click', () => {
+  if (isAuthed('admin_page')) {
+    enterTarget('admin_page');
+  } else {
+    openAuth('admin_page');
+  }
+});
 
 function openAuth(target) {
   pendingTarget = target;
@@ -1708,6 +2982,8 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     if (authModal.classList.contains('active')) closeAuthModal();
     if (itemModal.classList.contains('active')) closeItemModal();
+    if (previewModal.classList.contains('active')) closePreviewModal();
+    if (videoModal && videoModal.classList.contains('active')) closeVideoPreviewModal();
   }
 });
 document.getElementById('modal-submit').addEventListener('click', tryEnter);
@@ -1716,12 +2992,8 @@ passwordInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryEnter
 function tryEnter() {
   if (passwordInput.value === PASSWORDS[pendingTarget]) {
     closeAuthModal();
-    if (pendingTarget === 'admin_page') {
-      renderAdminScreen();
-    } else {
-      state.currentRole = pendingTarget;
-      renderDownloadScreen(pendingTarget);
-    }
+    markAuthed(pendingTarget);
+    enterTarget(pendingTarget);
   } else {
     errorMsg.classList.add('show');
     passwordInput.focus(); passwordInput.select();
@@ -1791,10 +3063,12 @@ itemFileInput.addEventListener('change', (e) => {
 });
 
 async function openItemModal(opts) {
-  // opts: { mode, role, parentId?, nodeId? }
+  // opts: { mode, role, parentId?, nodeId?, kind? }
+  const kind = opts.kind || state.adminKind || 'manual';
   const ctx = {
     mode: opts.mode,
     role: opts.role,
+    kind: kind,
     parentId: opts.parentId || null,
     nodeId: opts.nodeId || null,
     currentSourceType: 'none',
@@ -1806,22 +3080,23 @@ async function openItemModal(opts) {
 
   // Eyebrow + title text
   let eyebrow, title;
+  const isVideo = (kind === 'videos');
   if (opts.mode === 'edit') {
     eyebrow = t('admin_btn_edit');
-    title = t('item_modal_edit');
+    title = isVideo ? t('video_modal_edit') : t('item_modal_edit');
   } else if (opts.mode === 'add-section') {
-    eyebrow = t('admin_btn_add_section');
-    title = t('item_modal_new_section');
+    eyebrow = isVideo ? t('admin_btn_add_video') : t('admin_btn_add_section');
+    title = isVideo ? t('video_modal_new') : t('item_modal_new_section');
   } else if (opts.mode === 'add-child') {
     eyebrow = t('admin_btn_add_child');
-    title = t('item_modal_new_child');
+    title = isVideo ? t('video_modal_new_part') : t('item_modal_new_child');
   }
   itemModalEyebrow.textContent = eyebrow;
   itemModalTitle.textContent = title;
 
   // Populate fields
   if (opts.mode === 'edit' && opts.nodeId) {
-    const found = findNode(opts.role, opts.nodeId);
+    const found = findNode(opts.role, opts.nodeId, kind);
     if (found) {
       itemNumInput.value = found.node.num || '';
       itemTitleKoInput.value = (found.node.title && found.node.title.ko) || '';
@@ -1833,7 +3108,7 @@ async function openItemModal(opts) {
         ctx.currentSourceType = 'link';
         ctx.currentLinkUrl = link;
         itemLinkInput.value = link;
-        itemLinkConvert.checked = false; // already set, don't re-convert
+        itemLinkConvert.checked = false;
       } else if (hasFile) {
         ctx.currentSourceType = 'file';
         try {
@@ -1850,13 +3125,12 @@ async function openItemModal(opts) {
     }
     itemDeleteBtn.style.display = 'inline-block';
   } else {
-    // new section or new child - default suggestions
     let suggestedNum = '';
     if (opts.mode === 'add-section') {
-      const sections = getSections(opts.role) || [];
+      const sections = getTree(opts.role, kind) || [];
       suggestedNum = String(sections.length + 1);
     } else if (opts.mode === 'add-child' && opts.parentId) {
-      const found = findNode(opts.role, opts.parentId);
+      const found = findNode(opts.role, opts.parentId, kind);
       if (found) {
         const cnt = (found.node.children || []).length;
         suggestedNum = (found.node.num || '') + '.' + (cnt + 1);
@@ -1872,9 +3146,67 @@ async function openItemModal(opts) {
 
   setSourceTab(ctx.currentSourceType);
   updateFileDisplay();
+  populateManualRefsPicker(ctx);
   itemError.classList.remove('show');
   itemModal.classList.add('active');
   setTimeout(() => itemNumInput.focus(), 100);
+}
+
+// Populate the manual-refs picker (only visible when editing a video item).
+function populateManualRefsPicker(ctx) {
+  const row = document.getElementById('item-manual-refs-row');
+  const tree = document.getElementById('item-manual-refs-tree');
+  // Only show for video kind; hide otherwise
+  if (ctx.kind !== 'videos') {
+    row.style.display = 'none';
+    tree.innerHTML = '';
+    return;
+  }
+  // Get current manualRefs (if editing existing video)
+  let currentRefs = new Set();
+  if (ctx.mode === 'edit' && ctx.nodeId) {
+    const found = findNode(ctx.role, ctx.nodeId, 'videos');
+    if (found && Array.isArray(found.node.manualRefs)) {
+      currentRefs = new Set(found.node.manualRefs);
+    }
+  }
+  ctx.manualRefsSelected = currentRefs;
+
+  // Get manual tree for this role
+  const manualTree = getTree(ctx.role, 'manual') || [];
+  if (manualTree.length === 0) {
+    row.style.display = 'block';
+    tree.innerHTML = `<div class="manual-refs-empty">${t('item_modal_no_manual_yet')}</div>`;
+    return;
+  }
+
+  // Render manual tree as nested checkboxes
+  function renderRefNode(node, depth) {
+    const title = (node.title && node.title[ctx.kind === 'videos' ? state.lang : state.lang]) || '';
+    const checked = currentRefs.has(node.id) ? 'checked' : '';
+    const indent = `style="padding-left: ${depth * 18}px"`;
+    let html = `
+      <label class="ref-item" ${indent}>
+        <input type="checkbox" data-ref-id="${node.id}" ${checked}>
+        <span class="ref-num">${node.num}</span>
+        <span class="ref-title">${title}</span>
+      </label>
+    `;
+    if (node.children && node.children.length > 0) {
+      html += node.children.map(c => renderRefNode(c, depth + 1)).join('');
+    }
+    return html;
+  }
+  tree.innerHTML = manualTree.map(n => renderRefNode(n, 0)).join('');
+  row.style.display = 'block';
+
+  // Bind change handlers
+  tree.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      if (cb.checked) ctx.manualRefsSelected.add(cb.dataset.refId);
+      else ctx.manualRefsSelected.delete(cb.dataset.refId);
+    });
+  });
 }
 
 function closeItemModal() {
@@ -1888,12 +3220,13 @@ itemModal.addEventListener('click', e => { if (e.target === itemModal) closeItem
 
 itemDeleteBtn.addEventListener('click', async () => {
   if (!itemModalCtx || itemModalCtx.mode !== 'edit') return;
-  const found = findNode(itemModalCtx.role, itemModalCtx.nodeId);
+  const kind = itemModalCtx.kind || 'manual';
+  const found = findNode(itemModalCtx.role, itemModalCtx.nodeId, kind);
   if (!found) return;
   const hasChildren = found.node.children && found.node.children.length > 0;
   const msg = hasChildren ? t('admin_confirm_delete_with_children') : t('admin_confirm_delete_node');
   if (!confirm(msg + '\n\n' + (found.node.num || '') + ' ' + ((found.node.title && found.node.title[state.lang]) || ''))) return;
-  await deleteNodeAndSources(itemModalCtx.role, itemModalCtx.nodeId);
+  await deleteNodeAndSources(itemModalCtx.role, itemModalCtx.nodeId, kind);
   closeItemModal();
   showToast(t('admin_item_deleted'), 'success');
   renderAdminScreen();
@@ -1904,25 +3237,29 @@ document.getElementById('item-modal-save').addEventListener('click', saveItemMod
 async function saveItemModal() {
   const ctx = itemModalCtx;
   if (!ctx) return;
+  const kind = ctx.kind || 'manual';
   const num = itemNumInput.value.trim();
   const titleKo = itemTitleKoInput.value.trim();
   const titleEs = itemTitleEsInput.value.trim();
-  if (!num || !titleKo || !titleEs) {
-    itemError.classList.add('show');
-    return;
-  }
+  // No required validation: any field may be empty. The user can fill in details later.
 
   let nodeId;
   if (ctx.mode === 'add-section') {
-    const newNode = addSection(ctx.role, { num, title_ko: titleKo, title_es: titleEs });
+    const newNode = addSection(ctx.role, { num, title_ko: titleKo, title_es: titleEs }, kind);
     nodeId = newNode.id;
   } else if (ctx.mode === 'add-child') {
-    const newNode = addChild(ctx.role, ctx.parentId, { num, title_ko: titleKo, title_es: titleEs });
+    const newNode = addChild(ctx.role, ctx.parentId, { num, title_ko: titleKo, title_es: titleEs }, kind);
     if (!newNode) { showToast('Error: parent not found', 'error'); return; }
     nodeId = newNode.id;
   } else if (ctx.mode === 'edit') {
     nodeId = ctx.nodeId;
-    updateNode(ctx.role, nodeId, { num, title_ko: titleKo, title_es: titleEs });
+    updateNode(ctx.role, nodeId, { num, title_ko: titleKo, title_es: titleEs }, kind);
+  }
+
+  // Save manualRefs (only meaningful for video items)
+  if (kind === 'videos' && ctx.manualRefsSelected) {
+    const refs = [...ctx.manualRefsSelected];
+    updateNode(ctx.role, nodeId, { manualRefs: refs }, kind);
   }
 
   // Apply source
@@ -1943,7 +3280,6 @@ async function saveItemModal() {
         state.uploadedKeys.delete(nodeId);
       }
     } else {
-      // empty link → treat as none
       setLink(nodeId, null);
     }
   } else if (sourceType === 'file') {
@@ -1964,7 +3300,6 @@ async function saveItemModal() {
         return;
       }
     }
-    // if no pendingFile and no current file, that's fine (file mode but empty)
   }
 
   closeItemModal();
@@ -1975,13 +3310,21 @@ async function saveItemModal() {
   renderAdminScreen();
 }
 
-/* ════════════ FULL MANUAL VIRTUAL NODE ════════════ */
+/* ════════════ FULL MANUAL/VIDEOS VIRTUAL NODES ════════════ */
 function getFullManualNode(role) {
   return {
     id: '_full_' + role,
     num: '★',
-    title: { ko: t('admin_full_label'), es: t('admin_full_label') },
+    title: { ko: t('admin_full_label'), es: t('admin_full_label'), en: t('admin_full_label') },
     file: FULL_MANUAL_FILES[role]
+  };
+}
+function getFullVideosNode(role) {
+  return {
+    id: '_full_videos_' + role,
+    num: '★',
+    title: { ko: t('admin_videos_full_label'), es: t('admin_videos_full_label'), en: t('admin_videos_full_label') },
+    file: FULL_VIDEO_FILES[role] || ''
   };
 }
 
@@ -2016,10 +3359,16 @@ async function attemptDownload(node, displayName) {
     } catch (e) { console.warn(e); }
   }
   if (src.type === 'fallback') {
-    const a = document.createElement('a');
-    a.href = src.value; a.download = src.value.split('/').pop();
-    document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    showToast(displayName + ' — ' + t('download_msg') + '...');
+    // External URL → open in new tab; local path → download
+    if (/^https?:\/\//i.test(src.value)) {
+      window.open(src.value, '_blank', 'noopener');
+      showToast(displayName + ' — ' + t('open_in_new_tab'), 'success');
+    } else {
+      const a = document.createElement('a');
+      a.href = src.value; a.download = src.value.split('/').pop();
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      showToast(displayName + ' — ' + t('download_msg') + '...');
+    }
     return;
   }
   showToast(displayName + ' — N/A', 'error');
@@ -2060,30 +3409,70 @@ const adminScreen = document.getElementById('admin-screen');
 // Cache all nodes for current role for click-handler dispatch
 let downloadNodeMap = {};
 
-function renderDownloadScreen(role) {
-  const sections = getSections(role);
-  const fullNode = getFullManualNode(role);
+// Build the kind-toggle HTML (used in both download screen and admin)
+function kindToggleHtml(currentKind, prefix = 'view') {
+  const manualIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>';
+  const videosIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>';
+  return `
+    <div class="kind-toggle-wrap">
+      <div class="kind-toggle" data-toggle="kind">
+        <button data-kind="manual" class="${currentKind === 'manual' ? 'on' : ''}">${manualIcon}<span>${t('tab_manual')}</span></button>
+        <button data-kind="videos" class="${currentKind === 'videos' ? 'on' : ''}">${videosIcon}<span>${t('tab_videos')}</span></button>
+      </div>
+    </div>
+  `;
+}
+
+function renderDownloadScreen(role, opts = {}) {
+  const kind = opts.kind || state.downloadKind || 'manual';
+  state.downloadKind = kind;
+  const tree = getTree(role, kind);
+  const fullNode = (kind === 'videos') ? getFullVideosNode(role) : getFullManualNode(role);
   const emblemSrc = document.querySelector('#main-screen .emblem').src;
 
   downloadNodeMap = {};
   downloadNodeMap[fullNode.id] = fullNode;
 
   let body;
-  if (sections && sections.length > 0) {
-    body = `
-      <button class="full-manual-card" data-node-id="${fullNode.id}">
-        <div>
-          <div class="label">${t('full_label')}</div>
-          <h3>${t('full_title')}</h3>
-          <p>${t('full_desc')}</p>
-        </div>
-        <span class="download-btn-large">${t('full_btn')}</span>
-      </button>
-      <div>${sections.map(renderTopSection).join('')}</div>
-    `;
+  if (kind === 'manual') {
+    if (tree && tree.length > 0) {
+      const fullSrc = getNodeSource(fullNode);
+      const fullCard = (fullSrc.type !== 'none') ? `
+        <button class="full-manual-card" data-node-id="${fullNode.id}">
+          <div>
+            <div class="label">${t('full_label')}</div>
+            <h3>${t('full_title')}</h3>
+            <p>${t('full_desc')}</p>
+          </div>
+          <span class="download-btn-large">${t('full_btn')}</span>
+        </button>
+      ` : '';
+      body = fullCard + `<div>${tree.map(renderTopSection).join('')}</div>`;
+    } else {
+      body = `<div class="coming-soon"><h3>${t('coming_title')}</h3><p>${t('coming_desc')}</p></div>`;
+    }
   } else {
-    body = `<div class="coming-soon"><h3>${t('coming_title')}</h3><p>${t('coming_desc')}</p></div>`;
+    // videos
+    if (tree && tree.length > 0) {
+      const fullSrc = getNodeSource(fullNode);
+      const fullCard = (fullSrc.type !== 'none') ? `
+        <button class="full-manual-card" data-node-id="${fullNode.id}">
+          <div>
+            <div class="label">${t('video_full_label')}</div>
+            <h3>${t('video_full_title')}</h3>
+            <p>${t('video_full_desc')}</p>
+          </div>
+          <span class="download-btn-large">${t('video_full_btn')}</span>
+        </button>
+      ` : '';
+      body = fullCard + `<div class="video-grid">${tree.map((v, i) => renderVideoCard(v, i + 1)).join('')}</div>`;
+    } else {
+      body = `<div class="coming-soon"><h3>${t('videos_coming_title')}</h3><p>${t('videos_coming_desc')}</p></div>`;
+    }
   }
+
+  const metaCount = tree ? tree.length : 0;
+  const metaLabel = (kind === 'videos') ? t('videos_meta') : t('sections_meta');
 
   downloadScreen.innerHTML = `
     ${topBarHtml()}
@@ -2095,19 +3484,36 @@ function renderDownloadScreen(role) {
         <h1>${t(role + '_title')}</h1>
       </div>
       <div class="doc-meta">
-        ${t('sections_meta')} · ${sections ? sections.length : 0}<br/>
+        ${metaLabel} · ${metaCount}<br/>
         ${t('updated_meta')} · 2026
       </div>
     </div>
+    ${kindToggleHtml(kind)}
     ${body}
     <div class="footer-bar"><span>${t('footer_org')}</span><span>${t(role + '_title')}</span></div>
   `;
   bindControls(downloadScreen);
   downloadScreen.querySelector('[data-action="back-main"]').addEventListener('click', () => setScreen('main'));
+  // Kind toggle
+  downloadScreen.querySelectorAll('[data-toggle="kind"] button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.downloadKind = btn.dataset.kind;
+      renderDownloadScreen(role, { kind: btn.dataset.kind });
+    });
+  });
+  // Click any downloadable node
   downloadScreen.querySelectorAll('[data-node-id]').forEach(el => {
     el.addEventListener('click', () => {
       const node = downloadNodeMap[el.dataset.nodeId];
       if (node) attemptDownload(node, (node.title && node.title[state.lang]) || node.id);
+    });
+  });
+  // Click a video card → open inline video preview modal
+  downloadScreen.querySelectorAll('[data-action="video-preview"]').forEach(el => {
+    el.addEventListener('click', () => {
+      const videoId = el.dataset.videoId;
+      const node = downloadNodeMap[videoId];
+      if (node) openVideoPreviewModal(node, role);
     });
   });
   setScreen('download');
@@ -2134,7 +3540,6 @@ function renderNode(node, depth) {
   const isDownloadable = src.type !== 'none';
   const title = (node.title && node.title[state.lang]) || '';
 
-  // If has children but no source, render as subsection header (not downloadable)
   if (hasChildren && !isDownloadable) {
     const inner = node.children.map(c => renderNode(c, depth + 1)).join('');
     return `
@@ -2152,29 +3557,80 @@ function renderNode(node, depth) {
   return row;
 }
 
+// Render a single video card (for the videos download view)
+function renderVideoCard(video, displayIndex) {
+  downloadNodeMap[video.id] = video;
+  const title = (video.title && video.title[state.lang]) || '';
+  const src = getNodeSource(video);
+  const hasSource = src.type !== 'none';
+  const childrenHtml = (video.children || []).map(c => {
+    downloadNodeMap[c.id] = c;
+    const childTitle = (c.title && c.title[state.lang]) || '';
+    return `<li><span class="vc-bullet"></span>${childTitle}</li>`;
+  }).join('');
+
+  // Check if related manual nodes exist for this video
+  const relatedManuals = state.currentRole ? findRelatedManualNodes(state.currentRole, video) : [];
+  const hasManual = relatedManuals.length > 0;
+  const manualBadge = hasManual
+    ? `<span class="vc-manual-badge" title="${t('video_manual_available')}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:11px;height:11px"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>${t('video_manual_available')}</span>`
+    : '';
+
+  const cardClass = hasSource ? 'video-card clickable' : 'video-card disabled';
+  const cardAttrs = hasSource ? `data-action="video-preview" data-video-id="${video.id}"` : '';
+
+  const footer = hasSource
+    ? `<div class="video-card-foot">
+         ${manualBadge}
+         <span class="video-watch-btn"><span class="video-watch-icon">▶</span> ${t('video_watch')}</span>
+       </div>`
+    : `<div class="video-card-foot"><span class="video-watch-btn disabled">— ${t('admin_status_empty')}</span></div>`;
+
+  return `
+    <article class="${cardClass}" ${cardAttrs}>
+      <div class="video-card-head">
+        <span class="video-num">${t('video_label')} ${video.num}</span>
+        <h3 class="video-title">${title}</h3>
+      </div>
+      ${childrenHtml ? `<ul class="video-contents">${childrenHtml}</ul>` : ''}
+      ${footer}
+    </article>
+  `;
+}
+
 /* ════════════ ADMIN SCREEN ════════════ */
 async function renderAdminScreen() {
   try { state.uploadedKeys = new Set(await dbListKeys()); } catch (e) {}
   const role = state.adminTab;
-  const sections = getSections(role) || [];
+  const kind = state.adminKind || 'manual';
+  const tree = getTree(role, kind) || [];
 
   // Stats: count all nodes that have any source set
   const links = loadLinks();
-  let totalCount = 1; // full manual
-  let setCount = (links[getFullManualNode(role).id] || state.uploadedKeys.has(getFullManualNode(role).id)) ? 1 : 0;
+  const fullNode = (kind === 'videos') ? getFullVideosNode(role) : getFullManualNode(role);
+  let totalCount = 1; // full
+  let setCount = (links[fullNode.id] || state.uploadedKeys.has(fullNode.id) || fullNode.file) ? 1 : 0;
+  if (links[fullNode.id] || state.uploadedKeys.has(fullNode.id)) {
+    // already counted above (only counts as "set" if it has explicit link/file or fallback file)
+  } else if (fullNode.file) {
+    // counted via fullNode.file above
+  } else {
+    setCount = 0;
+  }
   function walk(nodes) {
     if (!nodes) return;
     for (const n of nodes) {
       totalCount++;
-      if (links[n.id] || state.uploadedKeys.has(n.id) || n.file) {
-        if (links[n.id] || state.uploadedKeys.has(n.id)) setCount++;
-      }
+      if (links[n.id] || state.uploadedKeys.has(n.id)) setCount++;
+      else if (n.file) setCount++;
       if (n.children) walk(n.children);
     }
   }
-  walk(sections);
+  walk(tree);
 
-  const treeHtml = renderAdminTreeForRole(role, sections);
+  const treeHtml = renderAdminTreeForRole(role, tree, kind);
+
+  const addBtnLabel = (kind === 'videos') ? t('admin_btn_add_video') : t('admin_btn_add_section');
 
   adminScreen.innerHTML = `
     ${topBarHtml()}
@@ -2185,6 +3641,10 @@ async function renderAdminScreen() {
         <h1>${t('admin_page_title')}</h1>
       </div>
       <div class="admin-header-actions">
+        <button class="btn-preview" id="btn-preview">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          ${kind === 'videos' ? t('admin_btn_preview_videos') : t('admin_btn_preview_manual')}
+        </button>
         <button class="btn-reset" id="btn-reset-structure">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
           ${t('admin_btn_reset')}
@@ -2200,15 +3660,21 @@ async function renderAdminScreen() {
       <button data-tab="student" class="${role==='student'?'on':''}">${t('student_name')}</button>
       <button data-tab="admin"   class="${role==='admin'  ?'on':''}">${t('admin_name')}</button>
     </div>
+    <div class="admin-subtabs-row">
+      <div class="admin-subtabs">
+        <button data-kind="manual" class="${kind==='manual'?'on':''}">${t('admin_subtab_manual')}</button>
+        <button data-kind="videos" class="${kind==='videos'?'on':''}">${t('admin_subtab_videos')}</button>
+      </div>
+      <button class="btn-add-primary" id="btn-add-section">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        <span>${addBtnLabel.replace(/^\+ ?/, '')}</span>
+      </button>
+    </div>
     <div class="admin-stats">
       <span>${t('admin_total')}<strong>${totalCount}</strong></span>
       <span>${t('admin_set_count')}<strong>${setCount}</strong></span>
     </div>
     <div class="admin-storage-note">ℹ︎ ${t('admin_storage_note')}</div>
-    <button class="btn-add-section" id="btn-add-section">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-      ${t('admin_btn_add_section').replace(/^\+ ?/, '')}
-    </button>
     ${treeHtml}
     <div class="footer-bar"><span>${t('footer_org')}</span><span>${t('admin_page_title')}</span></div>
   `;
@@ -2217,15 +3683,21 @@ async function renderAdminScreen() {
   adminScreen.querySelectorAll('.admin-tabs button').forEach(b => {
     b.addEventListener('click', () => { state.adminTab = b.dataset.tab; renderAdminScreen(); });
   });
+  adminScreen.querySelectorAll('.admin-subtabs button').forEach(b => {
+    b.addEventListener('click', () => { state.adminKind = b.dataset.kind; renderAdminScreen(); });
+  });
+  document.getElementById('btn-preview').addEventListener('click', () => {
+    openPreviewModal(role, kind);
+  });
   document.getElementById('btn-export-html').addEventListener('click', exportHtml);
   document.getElementById('btn-reset-structure').addEventListener('click', () => {
     if (!confirm(t('admin_confirm_reset'))) return;
-    resetSections(role);
+    resetTree(role, kind);
     showToast(t('admin_reset_done'), 'success');
     renderAdminScreen();
   });
   document.getElementById('btn-add-section').addEventListener('click', () => {
-    openItemModal({ mode: 'add-section', role });
+    openItemModal({ mode: 'add-section', role, kind });
   });
   adminScreen.querySelectorAll('[data-action]').forEach(btn => {
     const act = btn.dataset.action;
@@ -2308,18 +3780,20 @@ function bindDragAndDrop() {
       const targetIndex = parseInt(dndState.dropTarget.dataset.index, 10);
       const dropAt = dndState.dropPosition === 'above' ? targetIndex : targetIndex + 1;
       const role = state.adminTab;
-      moveNodeTo(role, dndState.sourceNodeId, dropAt);
+      const kind = state.adminKind || 'manual';
+      moveNodeTo(role, dndState.sourceNodeId, dropAt, kind);
       adminScreen.querySelectorAll('.dnd-item').forEach(el => el.classList.remove('drop-above', 'drop-below'));
       renderAdminScreen();
     });
   });
 }
 
-function renderAdminTreeForRole(role, sections) {
-  const fullNode = getFullManualNode(role);
-  let html = renderAdminItemFull(fullNode, role);
+function renderAdminTreeForRole(role, sections, kind = 'manual') {
+  const fullNode = (kind === 'videos') ? getFullVideosNode(role) : getFullManualNode(role);
+  let html = renderAdminItemFull(fullNode, role, kind);
   if (!sections || sections.length === 0) {
-    html += `<div class="admin-empty">${t('admin_no_items')}</div>`;
+    const emptyMsg = (kind === 'videos') ? t('admin_no_videos') : t('admin_no_items');
+    html += `<div class="admin-empty">${emptyMsg}</div>`;
     return html;
   }
   for (let i = 0; i < sections.length; i++) {
@@ -2419,9 +3893,10 @@ function renderAdminNode(node, role, parentId, index, total, depth) {
   `;
 }
 
-function renderAdminItemFull(node, role) {
+function renderAdminItemFull(node, role, kind = 'manual') {
   const link = getLink(node.id);
   const hasFile = state.uploadedKeys.has(node.id);
+  const fullLabel = (kind === 'videos') ? t('admin_videos_full_label') : t('admin_full_label');
   let status, sourceInfo = '';
   if (link) {
     status = `<span class="admin-status linked">🔗 ${t('admin_status_link')}</span>`;
@@ -2431,7 +3906,7 @@ function renderAdminItemFull(node, role) {
     sourceInfo = `<div class="admin-source-info file-info">📄 PDF</div>`;
   } else {
     status = `<span class="admin-status empty">○ ${t('admin_status_empty')}</span>`;
-    sourceInfo = `<div class="admin-source-info" style="color:var(--ink-mute)">${node.file}</div>`;
+    sourceInfo = node.file ? `<div class="admin-source-info" style="color:var(--ink-mute)">${node.file}</div>` : '';
   }
   const downloadBtn = (link || hasFile || node.file) ? actionBtn('download-source', node.id, null, t('admin_btn_download'),
     '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line>') : '';
@@ -2439,7 +3914,7 @@ function renderAdminItemFull(node, role) {
     <div class="admin-item full">
       <span class="admin-num full-mark">★</span>
       <div class="admin-info">
-        <div class="admin-title">${t('admin_full_label')}</div>
+        <div class="admin-title">${fullLabel}</div>
         ${sourceInfo}
       </div>
       ${status}
@@ -2461,36 +3936,39 @@ function actionBtn(action, nodeId, parentId, title, svgInner, extraClass = '') {
 /* ════════════ ADMIN ACTIONS ════════════ */
 async function handleAdminAction(action, nodeId, parentId) {
   const role = state.adminTab;
-  // Special case: full manual edit
+  const kind = state.adminKind || 'manual';
+  // Special case: full manual/videos edit
   if (nodeId && nodeId.startsWith('_full_')) {
     if (action === 'edit-node') {
-      // For full manual, only allow link/file editing - open simplified flow
-      openFullManualEdit(role, nodeId);
+      openFullManualEdit(role, nodeId, kind);
       return;
     }
     if (action === 'download-source') {
-      const node = getFullManualNode(role);
-      attemptDownload(node, t('admin_full_label'));
+      const node = (kind === 'videos') ? getFullVideosNode(role) : getFullManualNode(role);
+      const label = (kind === 'videos') ? t('admin_videos_full_label') : t('admin_full_label');
+      attemptDownload(node, label);
       return;
     }
     return;
   }
 
   if (action === 'edit-node') {
-    openItemModal({ mode: 'edit', role, nodeId });
+    openItemModal({ mode: 'edit', role, nodeId, kind });
   } else if (action === 'add-child') {
-    openItemModal({ mode: 'add-child', role, parentId: nodeId });
+    openItemModal({ mode: 'add-child', role, parentId: nodeId, kind });
   } else if (action === 'download-source') {
-    const found = findNode(role, nodeId);
+    const found = findNode(role, nodeId, kind);
     if (found) attemptDownload(found.node, (found.node.title && found.node.title[state.lang]) || nodeId);
   }
 }
 
 // Specialized modal for full manual (only source editing, not title)
-async function openFullManualEdit(role, nodeId) {
+async function openFullManualEdit(role, nodeId, kind = 'manual') {
+  const fullLabel = (kind === 'videos') ? t('admin_videos_full_label') : t('admin_full_label');
   const ctx = {
     mode: 'edit-full',
     role: role,
+    kind: kind,
     nodeId: nodeId,
     currentSourceType: 'none',
     currentLinkUrl: '',
@@ -2499,12 +3977,12 @@ async function openFullManualEdit(role, nodeId) {
   };
   itemModalCtx = ctx;
   itemModalEyebrow.textContent = t('admin_btn_edit');
-  itemModalTitle.textContent = t('admin_full_label');
+  itemModalTitle.textContent = fullLabel;
   itemNumInput.value = '★';
   itemNumInput.disabled = true;
-  itemTitleKoInput.value = t('admin_full_label');
+  itemTitleKoInput.value = fullLabel;
   itemTitleKoInput.disabled = true;
-  itemTitleEsInput.value = t('admin_full_label');
+  itemTitleEsInput.value = fullLabel;
   itemTitleEsInput.disabled = true;
 
   const link = getLink(nodeId);
@@ -2584,43 +4062,239 @@ async function openFullManualEdit(role, nodeId) {
   itemModal.addEventListener('click', backdropListener);
 }
 
+/* ════════════ PREVIEW MODAL (in-page iframe) ════════════ */
+const previewModal = document.getElementById('preview-modal');
+const previewIframe = document.getElementById('preview-iframe');
+const previewTitle = document.getElementById('preview-modal-title');
+
+function openPreviewModal(role, kind) {
+  // Make sure latest changes are persisted before previewing.
+  // The iframe will read from localStorage, which our edits already write to.
+  const label = (kind === 'videos') ? t('admin_btn_preview_videos') : t('admin_btn_preview_manual');
+  previewTitle.textContent = label + ' — ' + t(role + '_title');
+
+  // Build the preview URL: same page + ?preview=role&kind=kind&_t=cachebust
+  const url = new URL(window.location.href);
+  // Strip any existing preview params
+  url.searchParams.delete('preview');
+  url.searchParams.delete('kind');
+  url.searchParams.delete('_t');
+  // Set new
+  url.searchParams.set('preview', role);
+  url.searchParams.set('kind', kind);
+  url.searchParams.set('_t', Date.now());  // bypass cache to always reflect latest changes
+  previewIframe.src = url.toString();
+
+  previewModal.classList.add('active');
+  document.body.classList.add('modal-open');
+}
+function closePreviewModal() {
+  previewModal.classList.remove('active');
+  document.body.classList.remove('modal-open');
+  // Clear iframe so it stops running (frees memory)
+  previewIframe.src = 'about:blank';
+}
+document.getElementById('preview-modal-close').addEventListener('click', closePreviewModal);
+previewModal.addEventListener('click', e => {
+  if (e.target === previewModal) closePreviewModal();
+});
+
+/* ════════════ VIDEO PREVIEW MODAL (split: video left, manual right) ════════════ */
+const videoModal = document.getElementById('video-preview-modal');
+const videoModalTitle = document.getElementById('video-preview-title');
+const videoModalNum = document.getElementById('video-preview-num');
+const videoModalIframe = document.getElementById('video-preview-iframe');
+const videoModalFallback = document.getElementById('video-preview-fallback');
+const videoModalManualPanel = document.getElementById('video-preview-manual');
+const videoModalContents = document.getElementById('video-preview-contents');
+
+let videoModalNodeMap = {};
+
+function openVideoPreviewModal(video, role) {
+  const title = (video.title && video.title[state.lang]) || '';
+  videoModalNum.textContent = t('video_label') + ' ' + video.num;
+  videoModalTitle.textContent = title;
+
+  // Get the video URL from its source
+  const src = getNodeSource(video);
+  let videoUrl = null;
+  if (src.type === 'link') videoUrl = src.value;
+  else if (src.type === 'fallback' && /^https?:\/\//i.test(src.value)) videoUrl = src.value;
+  // Note: file (uploaded) sources can't be embedded — would need blob URL.
+  // We'll fall back to "open externally" for those.
+
+  // Embed the video
+  if (videoUrl) {
+    const { embed, original, kind } = toEmbedUrl(videoUrl);
+    if (embed) {
+      videoModalIframe.src = embed;
+      videoModalIframe.style.display = 'block';
+      videoModalFallback.style.display = 'none';
+    } else {
+      // Unknown URL format — show fallback link
+      videoModalIframe.src = 'about:blank';
+      videoModalIframe.style.display = 'none';
+      videoModalFallback.style.display = 'flex';
+      videoModalFallback.querySelector('a').href = original;
+    }
+  } else if (src.type === 'file') {
+    // Uploaded PDF — odd for a video, just offer download
+    videoModalIframe.src = 'about:blank';
+    videoModalIframe.style.display = 'none';
+    videoModalFallback.style.display = 'flex';
+    videoModalFallback.querySelector('a').href = '#';
+    videoModalFallback.querySelector('a').onclick = (e) => { e.preventDefault(); attemptDownload(video, title); };
+  } else {
+    videoModalIframe.src = 'about:blank';
+    videoModalIframe.style.display = 'none';
+    videoModalFallback.style.display = 'flex';
+  }
+
+  // Render the contents list (video children)
+  const childrenList = (video.children || []).map(c => {
+    const ct = (c.title && c.title[state.lang]) || '';
+    return `<li><span class="vc-bullet"></span>${c.num} ${ct}</li>`;
+  }).join('');
+  videoModalContents.innerHTML = childrenList
+    ? `<div class="vp-section-label">${t('video_contents_label')}</div><ul class="vp-contents-list">${childrenList}</ul>`
+    : '';
+
+  // Find and render the related manual nodes (may be multiple)
+  videoModalNodeMap = {};
+  const relatedNodes = findRelatedManualNodes(role, video);
+  if (relatedNodes.length > 0) {
+    let manualHtml = `
+      <div class="vp-manual-header">
+        <div class="vp-manual-eyebrow">${t('video_related_manual')}</div>
+      </div>
+    `;
+    // Render each related manual node as its own group
+    for (const matched of relatedNodes) {
+      videoModalNodeMap[matched.id] = matched;
+      manualHtml += `
+        <div class="vp-manual-group">
+          <div class="vp-manual-section">
+            <span class="vp-manual-num">${matched.num}</span>
+            <span class="vp-manual-title">${(matched.title && matched.title[state.lang]) || ''}</span>
+          </div>
+      `;
+      // If this node is itself downloadable, render it as a clickable row
+      const matchedSrc = getNodeSource(matched);
+      const inner = [];
+      if (matchedSrc.type !== 'none') {
+        inner.push(renderManualPanelNode(matched, 0));
+      }
+      // Render children
+      if (matched.children && matched.children.length > 0) {
+        for (const c of matched.children) inner.push(renderManualPanelNode(c, 1));
+      }
+      if (inner.length > 0) {
+        manualHtml += `<div class="vp-manual-tree">${inner.join('')}</div>`;
+      }
+      manualHtml += `</div>`;
+    }
+    videoModalManualPanel.innerHTML = manualHtml;
+    videoModalManualPanel.classList.remove('empty');
+    videoModalManualPanel.querySelectorAll('[data-vp-node-id]').forEach(el => {
+      el.addEventListener('click', () => {
+        const node = videoModalNodeMap[el.dataset.vpNodeId];
+        if (node) attemptDownload(node, (node.title && node.title[state.lang]) || node.id);
+      });
+    });
+  } else {
+    videoModalManualPanel.innerHTML = `
+      <div class="vp-manual-header">
+        <div class="vp-manual-eyebrow">${t('video_related_manual')}</div>
+      </div>
+      <div class="vp-manual-empty">${t('video_no_matching_manual')}</div>
+    `;
+    videoModalManualPanel.classList.add('empty');
+  }
+
+  videoModal.classList.add('active');
+  document.body.classList.add('modal-open');
+}
+
+function renderManualPanelNode(node, depth) {
+  videoModalNodeMap[node.id] = node;
+  const title = (node.title && node.title[state.lang]) || '';
+  const src = getNodeSource(node);
+  const isDownloadable = src.type !== 'none';
+  const indent = depth >= 2 ? 'depth-2' : '';
+
+  const head = isDownloadable
+    ? `<button class="vp-item ${indent}" data-vp-node-id="${node.id}">
+         <span class="vp-num">${node.num}</span>
+         <span class="vp-title">${title}</span>
+         <span class="vp-icon">↓</span>
+       </button>`
+    : `<div class="vp-item ${indent} no-source">
+         <span class="vp-num">${node.num}</span>
+         <span class="vp-title">${title}</span>
+       </div>`;
+
+  const childrenHtml = node.children && node.children.length
+    ? node.children.map(c => renderManualPanelNode(c, depth + 1)).join('')
+    : '';
+  return head + childrenHtml;
+}
+
+function closeVideoPreviewModal() {
+  videoModal.classList.remove('active');
+  document.body.classList.remove('modal-open');
+  videoModalIframe.src = 'about:blank';  // stop video playback
+}
+document.getElementById('video-preview-close').addEventListener('click', closeVideoPreviewModal);
+videoModal.addEventListener('click', e => { if (e.target === videoModal) closeVideoPreviewModal(); });
+
+
 /* ════════════ EXPORT HTML ════════════ */
 async function exportHtml() {
   try {
-    // Use the HTML captured at page load (before any DOM modifications).
-    // This works reliably whether the file is opened via file:// or https://,
-    // and regardless of which screen the user is on when they click Export.
     let html = ORIGINAL_HTML;
-
     const links = loadLinks();
 
-    // For each role, get current sections (from localStorage) and bake in.
-    function applyLinksToSections(nodes) {
+    function applyLinksToTree(nodes) {
       if (!Array.isArray(nodes)) return nodes;
       return nodes.map(n => {
         const copy = { ...n };
         if (links[n.id]) {
           copy.file = links[n.id];
         }
-        // Note: uploaded files are not exported (binaries can't be inlined practically)
-        if (copy.children) copy.children = applyLinksToSections(copy.children);
+        if (copy.children) copy.children = applyLinksToTree(copy.children);
         return copy;
       });
     }
 
+    // Manual data
     const newSections = {
-      teacher: applyLinksToSections(getSections('teacher')),
-      student: applyLinksToSections(getSections('student')),
-      admin:   applyLinksToSections(getSections('admin'))
+      teacher: applyLinksToTree(getTree('teacher', 'manual')),
+      student: applyLinksToTree(getTree('student', 'manual')),
+      admin:   applyLinksToTree(getTree('admin', 'manual'))
     };
 
+    // Videos data
+    const newVideos = {
+      teacher: applyLinksToTree(getTree('teacher', 'videos')),
+      student: applyLinksToTree(getTree('student', 'videos')),
+      admin:   applyLinksToTree(getTree('admin', 'videos'))
+    };
+
+    // Full manual links
     const newFullFiles = { ...FULL_MANUAL_FILES };
     for (const role of Object.keys(newFullFiles)) {
       const fullId = '_full_' + role;
       if (links[fullId]) newFullFiles[role] = links[fullId];
     }
 
-    // Replace SECTIONS_DATA_DEFAULT in source
+    // Full videos links
+    const newFullVideoFiles = { ...FULL_VIDEO_FILES };
+    for (const role of Object.keys(newFullVideoFiles)) {
+      const fullId = '_full_videos_' + role;
+      if (links[fullId]) newFullVideoFiles[role] = links[fullId];
+    }
+
+    // Replace SECTIONS_DATA_DEFAULT
     const sectionsBlockRe = /const\s+SECTIONS_DATA_DEFAULT\s*=\s*\{[\s\S]*?\n\};/;
     const newSectionsBlock = 'const SECTIONS_DATA_DEFAULT = {\n  teacher: ' +
       JSON.stringify(newSections.teacher, null, 2).replace(/\n/g, '\n  ') + ',\n  student: ' +
@@ -2629,9 +4303,27 @@ async function exportHtml() {
     if (!sectionsBlockRe.test(html)) throw new Error('Could not locate SECTIONS_DATA_DEFAULT in source');
     html = html.replace(sectionsBlockRe, newSectionsBlock);
 
+    // Replace VIDEOS_DATA_DEFAULT
+    const videosBlockRe = /const\s+VIDEOS_DATA_DEFAULT\s*=\s*\{[\s\S]*?\n\};/;
+    const newVideosBlock = 'const VIDEOS_DATA_DEFAULT = {\n  teacher: ' +
+      JSON.stringify(newVideos.teacher, null, 2).replace(/\n/g, '\n  ') + ',\n  student: ' +
+      JSON.stringify(newVideos.student) + ',\n  admin: ' +
+      JSON.stringify(newVideos.admin) + '\n};';
+    if (videosBlockRe.test(html)) {
+      html = html.replace(videosBlockRe, newVideosBlock);
+    }
+
+    // Replace FULL_MANUAL_FILES
     const fullBlockRe = /const\s+FULL_MANUAL_FILES\s*=\s*\{[\s\S]*?\n\};/;
     const newFullBlock = 'const FULL_MANUAL_FILES = ' + JSON.stringify(newFullFiles, null, 2) + ';';
     html = html.replace(fullBlockRe, newFullBlock);
+
+    // Replace FULL_VIDEO_FILES
+    const fullVideoBlockRe = /const\s+FULL_VIDEO_FILES\s*=\s*\{[\s\S]*?\n\};/;
+    const newFullVideoBlock = 'const FULL_VIDEO_FILES = ' + JSON.stringify(newFullVideoFiles, null, 2) + ';';
+    if (fullVideoBlockRe.test(html)) {
+      html = html.replace(fullVideoBlockRe, newFullVideoBlock);
+    }
 
     const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
     const url = URL.createObjectURL(blob);
@@ -2641,7 +4333,6 @@ async function exportHtml() {
     setTimeout(() => URL.revokeObjectURL(url), 1500);
     showToast(t('admin_export_done'), 'success');
 
-    // Check if there are uploaded files that won't be exported
     if (state.uploadedKeys.size > 0) {
       setTimeout(() => showToast(t('export_warning_files'), ''), 2600);
     }
